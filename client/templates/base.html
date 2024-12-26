@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Document{% endblock %}</title>
+</head>
+<body>
+    <h1>{% block h1 %}  Please Log In {% endblock %}</h1> 
+
+    <form action='/landingpage' method="POST">   
+        <input id="user" type="text" name="username" placeholder="Enter Username">
+        <input id="pass" type="text" name="password" placeholder="Enter Password">
+        {% block content %}{% endblock %}
+    </form>
+</body>
+</html>
