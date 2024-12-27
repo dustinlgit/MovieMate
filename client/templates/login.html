@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-<title>{% block title %} Login! {% endblock %}</title>
+{% block title %}Login!{% endblock %}
 
-
+{% block form_action %}/login{% endblock %}
 
 {% block content %}
-    <input id="log-in" type="submit" value="login">
+    <input id="log-in" type="submit" value="Log In">
 {% endblock %}

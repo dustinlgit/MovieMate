@@ -6,9 +6,9 @@
     <title>{% block title %}Document{% endblock %}</title>
 </head>
 <body>
-    <h1>{% block h1 %}  Please Log In {% endblock %}</h1> 
+    <h1>{% block h1 %}Please Log In{% endblock %}</h1>
 
-    <form action='/landingpage' method="POST">   
+    <form action="{% block form_action %}/landingpage{% endblock %}" method="POST">
         <input id="user" type="text" name="username" placeholder="Enter Username">
         <input id="pass" type="text" name="password" placeholder="Enter Password">
         {% block content %}{% endblock %}

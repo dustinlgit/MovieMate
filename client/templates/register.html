@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %} Registration {% endblock %}
+{% block title %}Registration{% endblock %}
 
-<h1>{% block h1 %}  Register an Account {% endblock %}</h1> 
+{% block h1 %}Register an Account{% endblock %}
+
+{% block form_action %}/register{% endblock %}
 
 {% block content %}
-
-<p>Hello</p>
-
+    <p>Hello</p>
+    <input id="register" type="submit" value="Register">
 {% endblock %}
