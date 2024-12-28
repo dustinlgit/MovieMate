@@ -9,16 +9,21 @@ def verification(usr, pswrd) -> dict:
 
     cursor.execute("SELECT hashed_pass FROM users WHERE username = ?", (usr,))
     stored_pass = cursor.fetchone()
+    # print(stored_pass[0])
 
     if stored_pass:
-       if bcrypt.checkpw(pswrd.encode("utf-8"), stored_pass):
+       if bcrypt.checkpw(pswrd.encode("utf-8"), stored_pass[0]):
+            cursor.close()
+            con.close()
             return {"success": True, "message": "Username and password match!"}
        else:
-           return {"success": False, "message":  "Wrong password!"} 
+            cursor.close()
+            con.close()
+            return {"success": False, "message":  "Wrong password!"} 
     else:
+        cursor.close()
+        con.close()
         return {"success": False, "message": "Username not found!"}
-
-    #make a jwt (web token) to allow us to access back end w out having to log back in
 
 
 def registration(usr, pswrd) -> bool:
@@ -27,18 +32,17 @@ def registration(usr, pswrd) -> bool:
 
     cursor.execute("SELECT id FROM users WHERE username = ?", (usr,))
     is_intable = cursor.fetchone()
-    print(" under is_intable")
 
     if is_intable:
-        # print("exists verifed")
-        return True #this means we have found the username, meaning that the username is already taken
+        # print("inside if")
+        return True
     else:
-        # print("doesnt exist above new pass")
+        # print("inside else")
         new_pass = bcrypt.hashpw(pswrd.encode("utf-8"), bcrypt.gensalt()) #hashing and using a 'salt' to further the encryptiom
         cursor.execute("INSERT INTO users(username, hashed_pass) VALUES(?, ?)", (usr, new_pass)) #id auto increments
         con.commit()
 
-        # #-------------tests
+        # #---tests insertion works---
         # print("above false")
         # cursor.execute("SELECT * FROM users")
         # rows = cursor.fetchall()
@@ -46,6 +50,6 @@ def registration(usr, pswrd) -> bool:
 
         cursor.close()
         con.close()
-        
+
         return False # returning false since we didn't find the username, so an account is generated for the user
     
