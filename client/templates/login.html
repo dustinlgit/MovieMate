@@ -7,3 +7,14 @@
 {% block content %}
     <input id="log-in" type="submit" value="Log In">
 {% endblock %}
+
+
+{% block button %}
+
+<button id="sendToRegistration"> Register an Account </button>
+<script>
+    document.getElementById("sendToRegistration").addEventListener("click", function(){
+        window.location.href = "/register"
+    });    
+</script>
+{% endblock %}
