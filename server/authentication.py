@@ -32,6 +32,6 @@ def registration(usr, pswrd) -> bool:
         return True #this means we have found the username, meaning that the username is already taken
     else:
         new_pass = bcrypt.hashpw(pswrd.encode("utf-8"), bcrypt.gensalt()) #hashing and using a 'salt' to further the encryptiom
-        cursor.execute("INSERT INTO users VALUES(usr, pswrd)") #id auto increments
+        cursor.execute("INSERT INTO users VALUES(?, ?)", (usr, pswrd)) #id auto increments
         return False # returning false since we didn't find the username, so an account is generated for the user
     
