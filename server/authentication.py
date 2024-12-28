@@ -1,11 +1,23 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask
 import bcrypt, sqlite3
 
 app = Flask(__name__, template_folder="../client/templates")
 
-@app.route("/", methods=["POST", "GET"])
-def log_verification():
-    ...
+def verification(usr, pswrd) -> dict:
+    con = sqlite3.connect("server/database/recommendations.db")
+    cursor = con.cursor()
+
+    cursor.execute("SELECT hashed_pass WHERE username = ?", (usr,))
+    stored_pass = cursor.fetchone()
+
+    if stored_pass:
+       if bcrypt.checkpw(pswrd.encode("utf-8"), stored_pass):
+            return {True : "Username and password match!"}
+       else:
+           return {False : "Wrong password!"} 
+    else:
+        return {False : "Username not found!"}
+
     #make a jwt (web token) to allow us to access back end w out having to log back in
 
 
