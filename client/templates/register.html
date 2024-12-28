@@ -6,13 +6,16 @@
 
 {% block form_action %}/register{% endblock %}
 
-{% block content %}
-    <p>Hello</p>
-    <input id="register" type="submit" value="Register">
+{% block content %} <input id="register" type="submit" value="Register"> {% endblock %}
+
+{% block button %}
+    <button id="sendToLogin">Back to Login</button>
+
+    <script>
+        document.getElementById("sendToLogin").addEventListener("click", function(){
+            window.location.href = "/login"
+        });
+    </script>
 {% endblock %}
 
-{% if message %}
-    <script type="text/javascript">
-        alert("{{ message }}");  // This will display the pop-up message
-    </script>
-{% endif %}
+

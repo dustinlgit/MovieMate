@@ -15,5 +15,11 @@
     </form>
 
     {% block button %}{% endblock %}
+    
+    <script>
+        if ("{{message}}") {
+            alert("{{message}}");
+        }
+    </script>
 </body>
 </html>
