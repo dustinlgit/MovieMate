@@ -11,6 +11,13 @@ users_column = """
     ); """
 
 cursor.execute(users_column)
+# cursor.execute("INSERT INTO users(username, hashed_pass) VALUES(?, ?)", ("user1", "hashed_password1"))
+# cursor.execute("INSERT INTO users(username, hashed_pass) VALUES(?, ?)", ("user2", "hashed_password2"))
+
+# # Checking inserted rows
+# cursor.execute("SELECT * FROM users")
+# rows = cursor.fetchall()
+# print(rows)
 
 # cursor.execute("DROP TABLE users")
 

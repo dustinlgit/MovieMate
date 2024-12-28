@@ -10,11 +10,11 @@ def create_login_page():
         pswrd = request.form["password"]
         this_dict = verification(usr, pswrd)
 
-        if this_dict.get(): #key is either t/f
+        if this_dict.get("success"): #key is either t/f
             print("Login successful")
-            return redirect(url_for("create_landingpage"))
+            return redirect(url_for("create_landingpage", message=this_dict["message"]))
         else: #should tell the user what went wrong
-            return render_template("login.html", message=this_dict[this_dict.get()])
+            return render_template("login.html", message=this_dict["message"])
     else:
         return render_template("login.html")
 

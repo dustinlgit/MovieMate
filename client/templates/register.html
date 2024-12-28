@@ -10,3 +10,9 @@
     <p>Hello</p>
     <input id="register" type="submit" value="Register">
 {% endblock %}
+
+{% if message %}
+    <script type="text/javascript">
+        alert("{{ message }}");  // This will display the pop-up message
+    </script>
+{% endif %}
