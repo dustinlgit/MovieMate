@@ -1,4 +1,4 @@
-# Movie Recomendation Application
+# Movie Recommendation Application
 This is an application to allow users such as yourself to find a movie you like based on your movie taste!
 
 
