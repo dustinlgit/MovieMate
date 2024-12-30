@@ -7,15 +7,15 @@ def verification(usr, pswrd) -> dict:
     con = sqlite3.connect("server/database/recommendations.db")
     cursor = con.cursor()
 
-    cursor.execute("SELECT hashed_pass FROM users WHERE username = ?", (usr,))
+    cursor.execute("SELECT id, hashed_pass FROM users WHERE username = ?", (usr,))
     stored_pass = cursor.fetchone()
     # print(stored_pass[0])
 
     if stored_pass:
-       if bcrypt.checkpw(pswrd.encode("utf-8"), stored_pass[0]):
+       if bcrypt.checkpw(pswrd.encode("utf-8"), stored_pass[1]):
             cursor.close()
             con.close()
-            return {"success": True, "message": "Username and password match!"}
+            return {"success": True, "id" : stored_pass[0]}
        else:
             cursor.close()
             con.close()
