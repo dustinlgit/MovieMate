@@ -1,6 +1,6 @@
 from authentication import registration, verification
 from tokens import create_token, decrypt_token
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, make_response
 
 app = Flask(__name__, template_folder="../client/templates")
 
@@ -15,7 +15,9 @@ def login_page():
             print("Login successful")
             token = create_token(this_dict.get("id"))
             print(token)
-            return redirect(url_for("main_page"))
+            response = make_response(redirect(url_for("main_page"))) #this way we can return 2 things
+            response.set_cookie("auth_token", token, httponly=True, secure=True, samesite="Lax") #pass token as a cookie
+            return response
         else:
             print("Login unsuccessful")
             return render_template("login.html", message=this_dict["message"])
