@@ -52,4 +52,3 @@ def registration(usr, pswrd) -> bool:
         con.close()
 
         return False # returning false since we didn't find the username, so an account is generated for the user
-    

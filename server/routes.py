@@ -4,6 +4,10 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 
 app = Flask(__name__, template_folder="../client/templates")
 
+@app.route("/")
+def landing_page():
+    return render_template("landing_page.html")
+
 @app.route("/login", methods=["POST", "GET"])
 def login_page():
     if request.method == "POST":
@@ -37,13 +41,17 @@ def registration_page():
     else:
         return render_template("register.html")
 
-@app.route("/")
-def landing_page():
-    return render_template("landing_page.html")
-
-@app.route("/mainpage")
+@app.route("/mainpage", methods=["GET"])
 def main_page():
     return render_template("main_page.html")
+    
+app.route("/favorites", methods=["GET"])
+def user_fav():
+    
+    
+app.route("/search", methods=["GET"])
+def search_movies():
+    ...
 
 if __name__ == "__main__":
     app.run(debug=True)
