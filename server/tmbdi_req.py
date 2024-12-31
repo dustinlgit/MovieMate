@@ -16,7 +16,7 @@ def get_fav_movies(id):
        SELECT movie_id
        FROM fav_movies
        WHERE id = ?
-    ); """
+    """
 
     cursor.execute(search_fav, (id,))
     favorite_movies = cursor.fetchall()
@@ -33,28 +33,28 @@ def get_fav_movies(id):
 def fetch_movie_details(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
     params = {"api_key": TMDB_API_KEY}
-    response = requests.get(url, param=params)
+    response = requests.get(url, params=params)
     if response.status_code == 200:
         return response.json()
     else:
-        return None
+        return {"error": f"Failed to fetch details for movie_id {movie_id}"}
 
 def fetch_movie_rating(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}/reviews"
     params = {"api_key": TMDB_API_KEY}
-    response = requests.get(url, param=params)
+    response = requests.get(url, params=params)
 
     if response.status_code == 200: #200 means it works
         return response.json()
     else:
-        return None
+        return {"error": f"Failed to fetch ratings for movie_id {movie_id}"}
 
-def fetch_reccomendations(movie_id):
+def fetch_recomendations(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}/recommendations"
     params = {"api_key": TMDB_API_KEY}
-    response = requests.get(url, param=params)
+    response = requests.get(url, params=params)
 
     if response.status_code == 200:
         return response.json()
     else:
-        return None
+        return {"error": f"Failed to fetch recommendations for movie_id {movie_id}"}

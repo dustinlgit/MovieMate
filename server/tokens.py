@@ -22,3 +22,6 @@ def decrypt_token(encoded)->dict:
         return {"Valid" : False, "error" : "Token has expired."}
     except jwt.InvalidTokenError:
         return {"Valid" : False, "error" : "Token is invalid."}
+    
+def get_user_id(payload: dict)->int:
+    return payload.get("user_id")

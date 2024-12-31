@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Movie Search Results </title>
+</head>
+<body>
+    <h1> Search Results for {{query}}: </h1>
+    {% if error %}
+        <p>{{error}}</p>
+    {% elif movies %}
+        <ul>
+            {% for movie in movies %}
+                <li>
+                    {{ movie.title }}<br>
+                    Release Date: {{ movie.release_date }}<br>
+                    <p>{{ movie.overview }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No movies found. Try searching for something else!</p>
+    {% endif %}
+    
+</body>
+</html>
