@@ -1,6 +1,6 @@
 import sqlite3
 
-con = sqlite3.connect("server/database/recommendations.db")
+con = sqlite3.connect("server/database/movies.db")
 cursor = con.cursor()
 
 users_table = """ 

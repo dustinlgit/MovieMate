@@ -6,9 +6,25 @@
     <title>Movie Recommendation App</title>
 </head>
 <body>
+
+    <h1> Search for movie: </h1>
     <form id="searchBar" action="/search" method="GET">
         <input type="text" id="query" name="query">
-        <input type="submit" id="submission" value="submit">
+        <input type="submit" id="submission" value="submission">
     </form>
+
+    <button id="goToFav">Favorites</button>
+    <script>
+        document.getElementById("goToFav").addEventListener("click", function(){
+            window.location.href = "/favorites"
+        });
+    </script>
+    
+    <h1> Get a movie recommendation: </h1>
+    <form id="recommendBar" action="/recommendations" method="GET">
+        <input type="text" id="query" name="query">
+        <input type="submit" id="submission" value="submission">
+    </form>
+
 </body>
 </html>

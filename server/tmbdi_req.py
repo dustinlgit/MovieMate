@@ -1,10 +1,11 @@
 from dotenv import load_dotenv
-from flask import Flask, requests, jsonify
+from flask import Flask, jsonify
+import requests
 import sqlite3
 import os
 
 load_dotenv()
-TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+BEARER_TOKEN = os.getenv("BEARER_TOKEN")
 
 app = Flask(__name__)
 
@@ -30,10 +31,16 @@ def get_fav_movies(id):
     
     return movie_in_tuple
 
+def add_fav_movie(id):
+    ...
+
 def fetch_movie_details(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
-    params = {"api_key": TMDB_API_KEY}
-    response = requests.get(url, params=params)
+    headers = {
+        "accept": "application/json",
+        "Authorization": BEARER_TOKEN
+    }
+    response = requests.get(url, headers=headers)
     if response.status_code == 200:
         return response.json()
     else:
@@ -41,8 +48,12 @@ def fetch_movie_details(movie_id):
 
 def fetch_movie_rating(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}/reviews"
-    params = {"api_key": TMDB_API_KEY}
-    response = requests.get(url, params=params)
+    headers = {
+        "accept": "application/json",
+        "Authorization": BEARER_TOKEN
+    }
+    response = requests.get(url, headers=headers)
+    
 
     if response.status_code == 200: #200 means it works
         return response.json()
@@ -51,8 +62,11 @@ def fetch_movie_rating(movie_id):
 
 def fetch_recomendations(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}/recommendations"
-    params = {"api_key": TMDB_API_KEY}
-    response = requests.get(url, params=params)
+    headers = {
+        "accept": "application/json",
+        "Authorization": BEARER_TOKEN
+    }
+    response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
         return response.json()

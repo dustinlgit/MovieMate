@@ -4,7 +4,7 @@ import bcrypt, sqlite3
 app = Flask(__name__, template_folder="../client/templates")
 
 def verification(usr, pswrd) -> dict:
-    con = sqlite3.connect("server/database/recommendations.db")
+    con = sqlite3.connect("server/database/movies.db")
     cursor = con.cursor()
 
     cursor.execute("SELECT id, hashed_pass FROM users WHERE username = ?", (usr,))
@@ -27,7 +27,7 @@ def verification(usr, pswrd) -> dict:
 
 
 def registration(usr, pswrd) -> bool:
-    con = sqlite3.connect("server/database/recommendations.db")
+    con = sqlite3.connect("server/database/movies.db")
     cursor = con.cursor()
 
     cursor.execute("SELECT id FROM users WHERE username = ?", (usr,))

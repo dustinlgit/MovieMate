@@ -16,7 +16,7 @@ def create_token(id):
 
 def decrypt_token(encoded)->dict:
     try:
-        this_payload = jwt.decode(encoded, os.getenv("SECRET_KEY"), algorithm="HS256")
+        this_payload = jwt.decode(encoded, os.getenv("SECRET_KEY"), algorithms=["HS256"])
         return {"Valid" : True, "payload" : this_payload}
     except jwt.ExpiredSignatureError:
         return {"Valid" : False, "error" : "Token has expired."}
