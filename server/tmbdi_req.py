@@ -143,7 +143,6 @@ def add_fav_movie(movie_name, usr_id):
     else:
         return "Failed to fetch movie data."
 
-
 def fetch_movie_details(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
     headers = {
