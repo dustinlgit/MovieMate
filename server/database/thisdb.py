@@ -14,9 +14,9 @@ movies_table = """
     CREATE TABLE IF NOT EXISTS movies(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         movie_name VARCHAR(500) NOT NULL,
+        movie_id INTEGER NOT NULL,
         release_date DATE,
-        description TEXT,
-        rating FLOAT
+        description TEXT
     ); """
 
 fav_movies_table = """
@@ -30,6 +30,7 @@ fav_movies_table = """
     );"""
 
 cursor.execute(users_table)
+# cursor.execute("DROP TABLE movies")
 cursor.execute(movies_table)
 cursor.execute(fav_movies_table)
 # cursor.execute("INSERT INTO users(username, hashed_pass) VALUES(?, ?)", ("user1", "hashed_password1"))

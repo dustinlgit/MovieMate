@@ -1,6 +1,6 @@
 from authentication import registration, verification
 from tokens import create_token, decrypt_token
-from tmbdi_req import get_fav_movies, fetch_recomendations, fetch_movie_details
+from tmbdi_req import get_fav_movies, fetch_recomendations, fetch_movie_details, add_fav_movie
 import requests
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
 from dotenv import load_dotenv
@@ -27,14 +27,14 @@ def login_page():
         this_dict = verification(usr, pswrd)
 
         if this_dict.get("success"):
-            print("Login successful")
+           # print("Login successful")
             token = create_token(this_dict.get("id"))
-            print(token)
+            #print(token)
             response = make_response(redirect(url_for("main_page"))) #this way we can return 2 things
             response.set_cookie("auth_token", token, httponly=True, secure=True, samesite="Lax") #pass token as a cookie
             return response
         else:
-            print("Login unsuccessful")
+            #print("Login unsuccessful")
             return render_template("login.html", message=this_dict["message"])
     else:
         return render_template("login.html")
@@ -58,20 +58,21 @@ def main_page():
     
 @app.route("/favorites", methods=["POST", "GET"])
 def user_fav():
-    if request.method == "POST": #adds -> POST
-        ...
-    else: #displays -> GET
-        cookie = request.cookies.get("auth_token") #auth_tokne is the key, the value is teh token
-        #print(cookie) #prints token so good
-        decrypted_cookie = decrypt_token(cookie) #decript this now
-        #print(decrypted_cookie) #gives correct
+    cookie = request.cookies.get("auth_token")
+    decrypted_cookie = decrypt_token(cookie)
+    # print(decrypted_cookie)
+    try:
         usr_id = decrypted_cookie.get("payload").get("user_id")
-        #print(decrypted_cookie.get("payload").get("user_id"))
-        
+    except Exception as e:
+        return f"Error: {e}"
+    
+    if request.method == "POST": #adds -> POST
+        add_fav_movie(request.form["query"], usr_id)
+        return render_template("favorites.html")
+    else: #displays -> GET
         movies = get_fav_movies(usr_id)
         for movie in movies:
             print(movie)
-
         return render_template("favorites.html")
     
 @app.route("/search", methods=["GET"])
