@@ -16,7 +16,7 @@ def get_fav_movies(user_id):
     search_id = """
        SELECT movie_id
        FROM fav_movies
-       WHERE user_id = ?  # Fixed the column name to user_id
+       WHERE user_id = ?
     """
     cursor.execute(search_id, (user_id,))
     movie_ids = cursor.fetchall()
@@ -24,7 +24,7 @@ def get_fav_movies(user_id):
     search_movie = """
         SELECT movie_name
         FROM movies
-        WHERE movie_id = ?  # Fixed the column name to movie_id
+        WHERE movie_id = ?
     """
     movies = []
     for movie_id_tuple in movie_ids:
@@ -32,6 +32,7 @@ def get_fav_movies(user_id):
         cursor.execute(search_movie, (movie_id,))
         movie = cursor.fetchone()
         if movie:
+            # print(movie[0])
             movies.append(movie[0]) 
 
     cursor.close()

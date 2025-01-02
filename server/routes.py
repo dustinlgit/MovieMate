@@ -71,9 +71,9 @@ def user_fav():
         return render_template("favorites.html")
     else: #displays -> GET
         movies = get_fav_movies(usr_id)
-        for movie in movies:
-            print(movie)
-        return render_template("favorites.html")
+        # for movie in movies:
+        #     print(movie)
+        return render_template("favorites.html", movies)
     
 @app.route("/search", methods=["GET"])
 def search_movies():
