@@ -68,12 +68,12 @@ def user_fav():
     
     if request.method == "POST": #adds -> POST
         add_fav_movie(request.form["query"], usr_id)
-        return render_template("favorites.html")
+        return redirect(url_for("user_fav"))
     else: #displays -> GET
         movies = get_fav_movies(usr_id)
         # for movie in movies:
         #     print(movie)
-        return render_template("favorites.html", movies)
+        return render_template("favorites.html", movies=movies)
     
 @app.route("/search", methods=["GET"])
 def search_movies():
