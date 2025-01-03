@@ -6,14 +6,12 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 from dotenv import load_dotenv
 import os
 
-
-
 load_dotenv()
 
 BEARER_TOKEN = os.getenv("BEARER_TOKEN")
 # print(BEARER_TOKEN)
 
-app = Flask(__name__, template_folder="../client/templates")
+app = Flask(__name__, template_folder="../client/templates", static_folder="../client/static")
 
 @app.route("/")
 def landing_page():
