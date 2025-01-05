@@ -1,0 +1,25 @@
+body{
+    background-color: rgb(129, 157, 217);   
+    color: white;
+    text-shadow: 0.3px 0.3px black;
+}
+
+#outerbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+
+
+button{
+    background: none;
+    border: none;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin: 10px;
+}
