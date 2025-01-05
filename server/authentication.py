@@ -25,7 +25,6 @@ def verification(usr, pswrd) -> dict:
         con.close()
         return {"success": False, "message": "Username not found!"}
 
-
 def registration(usr, pswrd) -> bool:
     con = sqlite3.connect("server/database/movies.db")
     cursor = con.cursor()

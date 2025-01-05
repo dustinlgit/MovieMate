@@ -4,11 +4,11 @@
 
 {% block form_action %}/login{% endblock %}
 
-{% block content %} <input id="log-in" type="submit" value="Log In"> {% endblock %}
+{% block content %} <input id="log-in" type="submit" value="login"> {% endblock %}
 
 
 {% block button %}
-    <button id="sendToRegistration"> Register an Account </button>
+    <button id="sendToRegistration"> dont have an account? click here! </button>
     <script>
         document.getElementById("sendToRegistration").addEventListener("click", function(){
             window.location.href = "/register"

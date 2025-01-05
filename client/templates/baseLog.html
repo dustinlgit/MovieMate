@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Document{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='baseLog.css') }}">
 </head>
 <body>
-    <h1>{% block h1 %}Please Log In{% endblock %}</h1>
-
-    <form action="{% block form_action %}/landingpage{% endblock %}" method="POST">
-        <input id="user" type="text" name="username" placeholder="Enter Username">
-        <input id="pass" type="text" name="password" placeholder="Enter Password">
-        {% block content %}{% endblock %}
-    </form>
-
-    {% block button %}{% endblock %}
+    <div id="box1">
+        <div id="box1/2">
+            <h2>MovieMate</h2>
+        </div>
+        <div id="box2">
+        <h3>{% block h1 %}log into your account{% endblock %}</h3>
+            <div id="box3">
+                <form action="{% block form_action %}/landingpage{% endblock %}" method="POST">
+                    <h3>username</h3>
+                    <input id="user" type="text" name="username" placeholder="Enter username">
+                    <h3>password</h3>
+                    <input id="pass" type="text" name="password" placeholder="Enter password">
+                    {% block content %}{% endblock %}
+            </form>
+            </div>
+            {% block button %}{% endblock %}
+        </div>
+    </div>
     
     <script>
         if ("{{message}}") {
             alert("{{message}}");
         }
     </script>
+
 </body>
 </html>
