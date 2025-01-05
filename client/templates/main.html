@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mainpage.css') }}">
     <title>Movie Recommendation App</title>
 </head>
 <body>
+    <h2> MovieMate </h2>
+    <div id="box1">
+        <h1> Welcome to the Movie Recommendation App! </h1>
+        <h2> Here you can search for movies and get recommendations based on your search and even add favorites! </h2>
 
-    <h1> Search for movie: </h1>
-    <form id="searchBar" action="/search" method="GET">
-        <input type="text" id="query" name="query">
-        <input type="submit" id="submission" value="submission">
-    </form>
+        <h1> Search for movie: </h1>
+        <form id="searchBar" action="/search" method="GET">
+            <input type="text" id="query" name="query">
+            <input type="submit" id="submission" value="submission">
+        </form>
+    </div>
+    <div id="box2">
+        <h1> Get a movie recommendation: </h1>
+        <form id="recommendBar" action="/recommendations" method="GET">
+            <input type="text" id="query" name="query">
+            <input type="submit" id="submission" value="submission">
+        </form>
 
-    <button id="goToFav">Favorites</button>
+        <button id="goToFav">Check out your favorites here!</button>
+    </div>
+
     <script>
         document.getElementById("goToFav").addEventListener("click", function(){
             window.location.href = "/favorites"
         });
     </script>
-    
-    <h1> Get a movie recommendation: </h1>
-    <form id="recommendBar" action="/recommendations" method="GET">
-        <input type="text" id="query" name="query">
-        <input type="submit" id="submission" value="submission">
-    </form>
-
 </body>
 </html>
